@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+const posts = await getCollection('blog');
+---
+
+<Layout title="VitalEdge - Optimize Your Healthspan">
+  <main class="max-w-6xl mx-auto px-4 py-12">
+
+    <!-- Hero with Background Image and Enhanced Overlay -->
+    <section class="relative overflow-hidden">
+      <img src="/images/hero-section4.png" alt="VitalEdge Wellness Background" class="absolute inset-0 w-full h-full object-cover opacity-30" />
+      <div class="relative z-10 max-w-5xl mx-auto px-6 py-32 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4 drop-shadow">Live Longer. Stronger. Smarter.</h1>
+        <p class="text-lg md:text-xl text-gray-800 mb-6 drop-shadow">
+          Your trusted source for wellness insights, longevity tools, and high-impact supplements — all backed by science.
+        </p>
+        <a href="/top-products" class="bg-blue-600 text-white font-semibold px-6 py-3 rounded hover:bg-blue-700 transition">
+          Explore Top Products
+        </a>
+      </div>
+    </section>
+
+    <!-- Blog Carousel Section -->
+    <section class="py-12">
+      <h2 class="text-2xl font-semibold text-center mb-6">Latest from the Blog</h2>
+      <div class="relative">
+        <div class="custom-swiper-button-prev absolute top-1/2 left-0 z-10 text-3xl text-blue-600 hover:text-blue-800 px-3 cursor-pointer">‹</div>
+        <div class="custom-swiper-button-next absolute top-1/2 right-0 z-10 text-3xl text-blue-600 hover:text-blue-800 px-3 cursor-pointer">›</div>
+
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            {posts.slice(0, 6).map(post => (
+              <div class="swiper-slide flex flex-col bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden h-full" key={post.slug}>
+                <a href={`/blog/${post.slug}`} class="flex flex-col h-full group">
+                  <div class="overflow-hidden relative">
+                    <img src={post.data.previewImage || post.data.heroImage} alt={post.data.title} class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 class="text-lg font-bold text-white">{post.data.title}</h3>
+                    </div>
+                  </div>
+                  <div class="p-4 flex-1 flex flex-col">
+                    <p class="text-sm text-gray-500 mb-1">{new Date(post.data.pubDate).toLocaleDateString()}</p>
+                    <p class="text-gray-700 text-sm mb-4 flex-1">{post.data.description}</p>
+                    <span class="text-blue-600 font-medium hover:underline mt-auto">Read More →</span>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="mb-16 bg-gray-50 py-12 rounded-lg shadow-inner">
+      <h2 class="text-2xl font-semibold mb-10 text-center">Featured on VitalEdge</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <a href="/top-products#nad" class="group block bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6 text-center rounded-2xl">
+          <div class="text-4xl mb-3 group-hover:animate-bounce">🔬</div>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-blue-700 transition-colors">Top NAD+ Boosters</h3>
+          <p class="text-sm text-gray-600">Explore our top-ranked supplements to restore energy and cellular function.</p>
+        </a>
+        <a href="/blog/what-is-nad-plus" class="group block bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6 text-center rounded-2xl">
+          <div class="text-4xl mb-3 group-hover:animate-bounce">🧬</div>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-blue-700 transition-colors">What Is NAD+?</h3>
+          <p class="text-sm text-gray-600">Learn why this coenzyme is key to aging well and how to boost it naturally.</p>
+        </a>
+        <a href="/top-products#tools" class="group block bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6 text-center rounded-2xl">
+          <div class="text-4xl mb-3 group-hover:animate-bounce">🧠</div>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-blue-700 transition-colors">Best Biohacking Tools</h3>
+          <p class="text-sm text-gray-600">Oura, Lumen, red light therapy and more — our top picks for 2025.</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<!-- Swiper Styles and Script -->
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const swiperScript = document.createElement('script');
+    swiperScript.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+    swiperScript.onload = () => {
+      new Swiper('.mySwiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: '.custom-swiper-button-next',
+          prevEl: '.custom-swiper-button-prev',
+        },
+        breakpoints: {
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        },
+      });
+    };
+    document.body.appendChild(swiperScript);
+  });
+</script>

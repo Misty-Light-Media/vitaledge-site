@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact VitalEdge">
+  <section class="py-10 text-center bg-blue-50">
+    <h1 class="text-3xl md:text-5xl font-bold mb-4">Get In Touch</h1>
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+      Questions, suggestions, or media inquiries? Reach out below.
+    </p>
+  </section>
+
+  <section class="py-12 max-w-xl mx-auto px-6">
+    <form class="space-y-6">
+      <div>
+        <label for="name" class="block font-medium">Name</label>
+        <input id="name" type="text" class="w-full border border-gray-300 rounded px-4 py-2" required>
+      </div>
+
+      <div>
+        <label for="email" class="block font-medium">Email</label>
+        <input id="email" type="email" class="w-full border border-gray-300 rounded px-4 py-2" required>
+      </div>
+
+      <div>
+        <label for="message" class="block font-medium">Message</label>
+        <textarea id="message" rows="5" class="w-full border border-gray-300 rounded px-4 py-2" required></textarea>
+      </div>
+
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Send Message</button>
+    </form>
+  </section>
+</Layout>

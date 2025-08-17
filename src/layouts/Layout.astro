@@ -1,0 +1,90 @@
+---
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title ? `${title} | VitalEdge` : "VitalEdge"}</title>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('menu-button');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+        });
+      });
+    </script>
+  </head>
+  <body class="font-sans bg-gray-50 text-gray-800 antialiased">
+    <header class="bg-white shadow sticky top-0 z-50">
+      <nav class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="/" class="flex items-center space-x-2">
+          <img src="/images/vitaledge-navbar.png" alt="VitalEdge Logo" class="h-14 w-auto max-w-[500px]" />
+          <span class="text-xl font-bold text-blue-700 hidden sm:inline">VitalEdge</span>
+        </a>
+
+        <!-- Mobile button -->
+        <button id="menu-button" class="md:hidden text-blue-600 focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex space-x-6 text-sm md:text-base font-medium">
+          <li><a href="/" class="hover:text-blue-600 transition">Home</a></li>
+          <li><a href="/top-products" class="hover:text-blue-600 transition">Top Products</a></li>
+          <li><a href="/blog" class="hover:text-blue-600 transition">Blog</a></li>
+          <li><a href="/about" class="hover:text-blue-600 transition">About</a></li>
+          <li><a href="/contact" class="hover:text-blue-600 transition">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+        <ul class="space-y-2 text-sm font-medium">
+          <li><a href="/" class="block hover:text-blue-600 transition">Home</a></li>
+          <li><a href="/top-products" class="block hover:text-blue-600 transition">Top Products</a></li>
+          <li><a href="/blog" class="block hover:text-blue-600 transition">Blog</a></li>
+          <li><a href="/about" class="block hover:text-blue-600 transition">About</a></li>
+          <li><a href="/contact" class="block hover:text-blue-600 transition">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="min-h-[75vh] px-4 py-8">
+      <slot />
+    </main>
+
+    <footer class="py-6 bg-white text-gray-500 text-sm">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col items-center space-y-4">
+      
+        <div class="flex space-x-4">
+          <a href="#" aria-label="Instagram" class="hover:text-blue-600">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.3.5.5.2.8.5 1.2 1s.7.7 1 1.2c.2.4.4 1.1.5 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.3-.2.5-.5.8-1 1.2s-.7.7-1.2 1c-.4.2-1.1.4-2.3.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.3-.5-.5-.2-.8-.5-1.2-1s-.7-.7-1-1.2c-.2-.4-.4-1.1-.5-2.3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.3.2-.5.5-.8 1-1.2s.7-.7 1.2-1c.4-.2 1.1-.4 2.3-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.5.2-1.9.4-.5.2-.8.5-1.2.9-.4.4-.6.7-.9 1.2-.2.4-.4.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.5.4 1.9.2.5.5.8.9 1.2.4.4.7.6 1.2.9.4.2.9.4 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.5-.2 1.9-.4.5-.2.8-.5 1.2-.9.4-.4.6-.7.9-1.2.2-.4.4-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.5-.4-1.9-.2-.5-.5-.8-.9-1.2-.4-.4-.7-.6-1.2-.9-.4-.2-.9-.4-1.9-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.8a5.3 5.3 0 110 10.6 5.3 5.3 0 010-10.6zm0 1.8a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.4-2.9a1.3 1.3 0 110 2.6 1.3 1.3 0 010-2.6z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="hover:text-blue-600">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8.29 20.251c7.547 0 11.675-6.155 11.675-11.49 0-.175 0-.349-.012-.522A8.18 8.18 0 0022 6.155a8.19 8.19 0 01-2.357.637A4.077 4.077 0 0021.448 4.4a8.224 8.224 0 01-2.605.975A4.105 4.105 0 0015.448 4c-2.266 0-4.103 1.814-4.103 4.053 0 .318.036.63.105.927-3.41-.167-6.43-1.77-8.448-4.202a4.014 4.014 0 00-.555 2.038c0 1.404.723 2.646 1.823 3.372a4.107 4.107 0 01-1.859-.507v.05c0 1.963 1.42 3.6 3.301 3.972a4.1 4.1 0 01-1.853.07c.523 1.617 2.037 2.793 3.833 2.827A8.233 8.233 0 012 18.407 11.616 11.616 0 008.29 20.25" />
+            </svg>
+          </a>
+           <!-- Facebook -->
+          <a href="#" aria-label="Facebook" class="hover:text-blue-600">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 5.005 3.66 9.127 8.438 9.878v-6.988h-2.54v-2.89h2.54V9.797c0-2.507 1.493-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562v1.875h2.773l-.443 2.89h-2.33V22C18.34 21.127 22 17.005 22 12z" />
+            </svg>
+          </a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <img src="/images/vitaledge-navbar.png" alt="VitalEdge Logo" class="h-8 w-auto" />
+          <span>&copy; 2025 VitalEdge. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
