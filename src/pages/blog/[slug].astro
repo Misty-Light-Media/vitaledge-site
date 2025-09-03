@@ -4,33 +4,33 @@ import Seo from '../../components/Seo.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import { getCollection } from 'astro:content';
 
-// Build all blog pages at build time
+// base-aware helpers
+const base = import.meta.env.BASE_URL;
+const href = (p = '') => `${base.replace(/\/?$/, '/')}${p.replace(/^\/+/, '')}`;
+const srcify = (p?: string) => (p?.startsWith('/') ? `${base}${p.slice(1)}` : p);
+
+// ✅ Build-time: generate routes for each blog post
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
+  return posts.map((p) => ({
+    params: { slug: p.slug },
+    props: { entry: p }, // pass the whole entry as props
   }));
 }
 
-const base = import.meta.env.BASE_URL;
-// Always prefix base; strip any leading slash; pass-through http(s)
-const resolveAsset = (p?: string) =>
-  p ? (p.startsWith('http') ? p : `${base}${p.replace(/^\/?/, '')}`) : '';
-
-// receive the entry from getStaticPaths()
-const { entry } = Astro.props as { entry: any };
-
-// render() gives us a Content component and headings array
-const { Content, headings } = await entry.render();
-
-// If the markdown already has a top-level H1, don’t render our own.
-const hasH1 = Array.isArray(headings) && headings[0]?.depth === 1;
+// Page props from getStaticPaths
+const { entry } = Astro.props;
 
 const site = Astro.site?.toString() ?? 'https://misty-light-media.github.io/vitaledge-site/';
 const path = `/blog/${entry.slug}/`;
-const heroImg = resolveAsset(entry.data.heroImage);
-const ogImg = resolveAsset(entry.data.previewImage || entry.data.heroImage);
+const heroImg = srcify(entry.data.heroImage);
+const ogImg = srcify(entry.data.previewImage || entry.data.heroImage);
+
+// optional: fallback reading time
+const readingTime =
+  typeof entry.data.readingTime === 'number'
+    ? entry.data.readingTime
+    : Math.max(3, Math.round((String((await entry.render()).remarkPluginFrontmatter?.rawContent || '').split(/\s+/).length || 800) / 225));
 ---
 
 <Layout title={entry.data.title}>
@@ -58,14 +58,17 @@ const ogImg = resolveAsset(entry.data.previewImage || entry.data.heroImage);
   <main class="max-w-3xl mx-auto px-4 py-10">
     <article class="prose max-w-none">
       {heroImg && <img src={heroImg} alt={entry.data.title} class="w-full rounded-xl mb-6" />}
-      {!hasH1 && <h1>{entry.data.title}</h1>}
+      <h1>{entry.data.title}</h1>
       <p class="text-sm text-gray-500">
         {new Date(entry.data.pubDate).toLocaleDateString()}
-        {entry.data.readingTime ? ` · ${entry.data.readingTime} min read` : ''}
+        {readingTime ? ` · ${readingTime} min read` : ''}
       </p>
 
-      {/* Render the markdown content */}
-      <Content />
+      {await entry.render()}
     </article>
+
+    <div class="mt-10">
+      <a href={href('blog/')} class="text-blue-600 hover:underline">← Back to Blog</a>
+    </div>
   </main>
 </Layout>
