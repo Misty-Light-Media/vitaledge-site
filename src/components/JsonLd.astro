@@ -1,0 +1,5 @@
+---
+export interface Props { json: Record<string, any>; }
+const { json } = Astro.props;
+---
+<script type="application/ld+json">{JSON.stringify(json)}</script>

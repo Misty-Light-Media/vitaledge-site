@@ -1,0 +1,15 @@
+---
+const key = 've-consent';
+---
+<div id="consent" class="fixed bottom-3 left-3 right-3 md:left-auto md:right-3 z-50 bg-white/95 backdrop-blur rounded-xl shadow p-4 text-sm hidden">
+  <p>We use cookies/analytics to improve VitalEdge. <button id="ok" class="ml-2 underline">OK</button></p>
+</div>
+<script>
+  const key = 've-consent';
+  const el = document.getElementById('consent');
+  if (!localStorage.getItem(key)) el?.classList.remove('hidden');
+  document.getElementById('ok')?.addEventListener('click', () => {
+    localStorage.setItem(key, '1');
+    el?.remove();
+  });
+</script>

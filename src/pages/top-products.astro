@@ -1,71 +1,237 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Seo from '../components/Seo.astro';
+import AffLink from '../components/AffLink.astro';
+import AffDisclosure from '../components/AffDisclosure.astro';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (p?: string) => (p?.startsWith('/') ? `${base}${p.slice(1)}` : p);
 ---
 
 <Layout title="Top Products">
+  <!-- SEO tags -->
+  <Seo
+    title="Top Longevity & Biohacking Products"
+    description="Our curated picks for NAD+ supplements, Oura Ring, Lumen, LMNT, and red light therapy — tested and reviewed by VitalEdge."
+    path="/top-products/"
+    type="product"
+  />
+
   <main class="max-w-6xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-10 text-center">Our Top Longevity Tools & Supplements</h1>
+    <h1 class="text-4xl font-bold mb-4 text-center">Our Top Longevity Tools & Supplements</h1>
+    <p class="text-center text-gray-600 max-w-2xl mx-auto">
+      Hand-picked gear we actually like, with quick takes and deep-dive reviews.
+    </p>
+
+    <!-- Subnav / Jump Links -->
+    <nav class="mt-8 mb-12 flex flex-wrap items-center justify-center gap-3">
+      <a href="#nad" class="px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm hover:bg-blue-100 transition">NAD+ Supplements</a>
+      <a href="#wearables" class="px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm hover:bg-blue-100 transition">Wearables</a>
+      <a href="#rlt" class="px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm hover:bg-blue-100 transition">Red Light Therapy</a>
+      <a href="#hydration" class="px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm hover:bg-blue-100 transition">Hydration & Electrolytes</a>
+    </nav>
 
     <!-- NAD+ Supplements Section -->
     <section id="nad" class="mb-16">
-      <h2 class="text-2xl font-semibold mb-6">Top NAD+ Supplements</h2>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-semibold">Top NAD+ Supplements</h2>
+        <a href={`${base}blog/what-is-nad-plus/`} class="text-sm text-blue-700 hover:underline">What is NAD+? →</a>
+      </div>
+
       <div class="grid md:grid-cols-3 gap-6">
-        <a href="#" class="block bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/images/tru-niagen.jpg" alt="Tru Niagen" class="w-full h-48 object-contain transition-transform duration-300 hover:scale-105" />
-          <div class="p-4">
-            <h3 class="text-xl font-bold mb-1">Tru Niagen</h3>
-            <p class="text-gray-600 text-sm mb-2">Clinically backed NR supplement that supports energy and cellular health.</p>
-            <span class="text-blue-600 font-medium hover:underline">Check Price →</span>
-          </div>
-        </a>
-        <a href="#" class="block bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/images/toniiq.jpg" alt="Toniiq NMN" class="w-full h-48 object-contain transition-transform duration-300 hover:scale-105" />
-          <div class="p-4">
-            <h3 class="text-xl font-bold mb-1">Toniiq NMN</h3>
-            <p class="text-gray-600 text-sm mb-2">Ultra-pure NMN, third-party tested and fast-absorbing.</p>
-            <span class="text-blue-600 font-medium hover:underline">Check Price →</span>
-          </div>
-        </a>
-        <a href="#" class="block bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/images/elysium.jpg" alt="Elysium Basis" class="w-full h-48 object-contain transition-transform duration-300 hover:scale-105" />
-          <div class="p-4">
-            <h3 class="text-xl font-bold mb-1">Elysium Basis</h3>
-            <p class="text-gray-600 text-sm mb-2">Combines NR with pterostilbene for antioxidant synergy and healthy aging.</p>
-            <span class="text-blue-600 font-medium hover:underline">Check Price →</span>
-          </div>
-        </a>
+        <!-- Tru Niagen -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/tru-niagen-review/`} class="block group">
+            <img src={withBase('/images/tru-niagen.jpg')} alt="Tru Niagen NR supplement bottle" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold mb-1">Tru Niagen</h3>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">Editor’s Pick</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">Clinically backed NR supplement that supports energy and cellular health.</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/tru-niagen-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/tru-niagen?tag=your-aff-id">Check Price</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Toniiq NMN -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/toniiq-nmn-review/`} class="block group">
+            <img src={withBase('/images/toniiq.jpg')} alt="Toniiq NMN supplement" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">Toniiq NMN</h3>
+              <p class="text-gray-600 text-sm mb-3">Ultra-pure NMN, third-party tested and fast-absorbing.</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/toniiq-nmn-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/toniiq-nmn?tag=your-aff-id">Check Price</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Elysium Basis -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/elysium-basis-review/`} class="block group">
+            <img src={withBase('/images/elysium.jpg')} alt="Elysium Basis NR + pterostilbene" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">Elysium Basis</h3>
+              <p class="text-gray-600 text-sm mb-3">NR plus pterostilbene for antioxidant synergy and healthy aging.</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/elysium-basis-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/elysium-basis?tag=your-aff-id">Check Price</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
       </div>
     </section>
 
-    <!-- Other Tools Section -->
-    <section id="tools">
-      <h2 class="text-2xl font-semibold mb-6">Other Recommended Tools</h2>
+    <!-- Wearables Section -->
+    <section id="wearables" class="mb-16">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-semibold">Wearables</h2>
+        <a href={`${base}blog/lumen-vs-biosense-vs-levels/`} class="text-sm text-blue-700 hover:underline">Compare trackers →</a>
+      </div>
+
       <div class="grid md:grid-cols-3 gap-6">
-        <a href="#" id="oura" class="block bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/images/oura-ring.jpg" alt="Oura Ring" class="w-full h-48 object-contain transition-transform duration-300 hover:scale-105" />
-          <div class="p-4">
-            <h3 class="text-xl font-bold mb-1">Oura Ring</h3>
-            <p class="text-gray-600 text-sm mb-2">Advanced sleep, activity, and recovery insights via sleek wearable tech.</p>
-            <span class="text-blue-600 font-medium hover:underline">View Product →</span>
-          </div>
-        </a>
-        <a href="#" id="lumen" class="block bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/images/blog/clean/lumen1.jpg" alt="Lumen Metabolism Tracker" class="w-full h-48 object-contain transition-transform duration-300 hover:scale-105" />
-          <div class="p-4">
-            <h3 class="text-xl font-bold mb-1">Lumen Metabolism Tracker</h3>
-            <p class="text-gray-600 text-sm mb-2">Real-time fat vs carb burn analysis through breath sensing.</p>
-            <span class="text-blue-600 font-medium hover:underline">Learn More →</span>
-          </div>
-        </a>
-        <a href="#" id="redlight" class="block bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/images/red-light.jpg" alt="Red Light Therapy Panel" class="w-full h-48 object-contain transition-transform duration-300 hover:scale-105" />
-          <div class="p-4">
-            <h3 class="text-xl font-bold mb-1">Red Light Therapy Panel</h3>
-            <p class="text-gray-600 text-sm mb-2">Support muscle recovery, skin rejuvenation, and mitochondrial health.</p>
-            <span class="text-blue-600 font-medium hover:underline">See Options →</span>
-          </div>
-        </a>
+        <!-- Oura Ring -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/oura-ring-review/`} class="block group">
+            <img src={withBase('/images/oura-ring.jpg')} alt="Oura Ring wearable" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">Oura Ring</h3>
+              <p class="text-gray-600 text-sm mb-3">Advanced sleep, activity, and recovery insights via sleek wearable tech.</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/oura-ring-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/oura-ring?tag=your-aff-id">View Product</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Lumen -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/lumen-review/`} class="block group">
+            <img src={withBase('/images/blog/clean/lumen1.jpg')} alt="Lumen metabolism tracker device" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">Lumen Metabolism Tracker</h3>
+              <p class="text-gray-600 text-sm mb-3">Real-time fat vs carb burn analysis through breath sensing.</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/lumen-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/lumen?tag=your-aff-id">Learn More</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Levels -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/levels-review/`} class="block group">
+            <img src={withBase('/images/blog/clean/levels.png')} alt="Levels continuous glucose monitor app and sensor" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">Levels (CGM)</h3>
+              <p class="text-gray-600 text-sm mb-3">Continuous glucose monitoring to optimize meals, sleep, and training.</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/levels-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/levels?tag=your-aff-id">Get Levels</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
       </div>
     </section>
+
+    <!-- Red Light Therapy Section -->
+    <section id="rlt" class="mb-16">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-semibold">Red Light Therapy</h2>
+        <a href={`${base}blog/red-light-therapy/`} class="text-sm text-blue-700 hover:underline">What the science says →</a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Mito Red -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/mito-red-review/`} class="block group">
+            <img src={withBase('/images/red-light.jpg')} alt="Mito Red MitoPRO panel" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">Mito Red MitoPRO</h3>
+              <p class="text-gray-600 text-sm mb-3">Premium, high-power full-body red light panel.</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/mito-red-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/mitopro?tag=your-aff-id">See Options</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Hooga HG300 -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/hooga-hg300-review/`} class="block group">
+            <img src={withBase('/images/blog/clean/hooga.png')} alt="Hooga HG300 red light therapy panel" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">Hooga HG300</h3>
+              <p class="text-gray-600 text-sm mb-3">Budget-friendly, targeted panel for face and joints.</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/hooga-hg300-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/hooga-hg300?tag=your-aff-id">Check Price</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Biosense (Ketones) shown in RLT row as a cross-sell tile -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/biosense-review/`} class="block group">
+            <img src={withBase('/images/blog/clean/biosense.png')} alt="Biosense breath ketone meter" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">Biosense (Ketones)</h3>
+              <p class="text-gray-600 text-sm mb-3">Breath ketone tracking to validate fat-burning state.</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/biosense-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/biosense?tag=your-aff-id">View Device</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Hydration / Electrolytes -->
+    <section id="hydration" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-6">Hydration & Electrolytes</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- LMNT -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/lmnt-review/`} class="block group">
+            <img src={withBase('/images/blog/clean/lmnt.png')} alt="LMNT electrolyte packets" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">LMNT Electrolytes</h3>
+              <p class="text-gray-600 text-sm mb-3">Fasting-friendly electrolyte mix (no sugar, no calories).</p>
+              <div class="flex items-center gap-4">
+                <a href={`${base}blog/lmnt-review/`} class="text-blue-700 font-medium hover:underline">Read Full Review →</a>
+                <AffLink href="https://example.com/lmnt?tag=your-aff-id">Shop LMNT</AffLink>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Levels cross-sell -->
+        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <a href={`${base}blog/lumen-vs-biosense-vs-levels/`} class="block group">
+            <img src={withBase('/images/blog/clean/metabolic.png')} alt="Metabolic trackers comparison: Lumen, Biosense, Levels" class="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-1">Best Metabolic Trackers</h3>
+              <p class="text-gray-600 text-sm mb-3">Compare Lumen, Biosense, and Levels for your goals.</p>
+              <span class="text-blue-700 font-medium hover:underline">See Comparison →</span>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <AffDisclosure />
   </main>
 </Layout>

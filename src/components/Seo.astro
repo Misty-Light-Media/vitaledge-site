@@ -1,0 +1,38 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+}
+const {
+  title,
+  description = 'VitalEdge: longevity, wellness, biohacking, and product reviews.',
+  path = '/',
+  image = '/vitaledge-site/images/og/default.jpg',
+  type = 'website',
+  noindex = false,
+} = Astro.props as Props;
+
+const site = new URL(Astro.site ?? 'https://misty-light-media.github.io/vitaledge-site/');
+const url = new URL(path, site).toString();
+const ogImage = image.startsWith('http') ? image : new URL(image, site).toString();
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={url} />
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="VitalEdge" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

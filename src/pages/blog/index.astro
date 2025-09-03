@@ -3,6 +3,11 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 const posts = await getCollection('blog');
+const base = import.meta.env.BASE_URL;
+
+// Always prefix base; strip any leading slash; pass-through http(s)
+const resolveAsset = (p?: string) =>
+  p ? (p.startsWith('http') ? p : `${base}${p.replace(/^\/?/, '')}`) : '';
 ---
 
 <Layout title="VitalEdge Blog">
@@ -15,25 +20,27 @@ const posts = await getCollection('blog');
 
   <section class="py-12 max-w-6xl mx-auto px-4">
     <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-      {posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)).map((post) => (
-        <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden flex flex-col h-full">
-          <a href={`/blog/${post.slug}`} class="flex flex-col h-full">
-            {(post.data.previewImage || post.data.heroImage) && (
-              <img
-              src={post.data.previewImage || post.data.heroImage}
-              alt={post.data.title}
-              class="w-full h-48 object-cover hover:opacity-90 transition"
-              />
-            )}
-            <div class="p-6 flex-1 flex flex-col">
-              <h2 class="text-2xl font-semibold mb-2 text-gray-900 hover:text-blue-700 transition">{post.data.title}</h2>
-              <p class="text-sm text-gray-500 mb-2">{new Date(post.data.pubDate).toLocaleDateString()}</p>
-              <p class="text-gray-700 mb-4 flex-1">{post.data.description}</p>
-              <span class="text-blue-600 font-medium hover:underline mt-auto">Read More →</span>
-            </div>
-          </a>
-        </article>
-      ))}
+      {posts
+        .sort((a, b) => Number(new Date(b.data.pubDate)) - Number(new Date(a.data.pubDate)))
+        .map((post) => (
+          <article class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden flex flex-col h-full">
+            <a href={`${base}blog/${post.slug}/`} class="flex flex-col h-full">
+              {(post.data.previewImage || post.data.heroImage) && (
+                <img
+                  src={resolveAsset(post.data.previewImage || post.data.heroImage)}
+                  alt={post.data.title}
+                  class="w-full h-48 object-cover hover:opacity-90 transition"
+                />
+              )}
+              <div class="p-6 flex-1 flex flex-col">
+                <h2 class="text-2xl font-semibold mb-2 text-gray-900 hover:text-blue-700 transition">{post.data.title}</h2>
+                <p class="text-sm text-gray-500 mb-2">{new Date(post.data.pubDate).toLocaleDateString()}</p>
+                <p class="text-gray-700 mb-4 flex-1">{post.data.description}</p>
+                <span class="text-blue-600 font-medium hover:underline mt-auto">Read More →</span>
+              </div>
+            </a>
+          </article>
+        ))}
     </div>
   </section>
 </Layout>

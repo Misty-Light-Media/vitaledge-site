@@ -3,8 +3,11 @@ title: "Can Lumen Really Hack Your Metabolism? Our In-Depth Review"
 author: "Alex @ VitalEdge"
 pubDate: 2025-07-12
 description: "We tested Lumen, the handheld device that claims to reveal whether you're burning fat or carbs. Here’s what we discovered."
-heroImage: "/images/blog/hero/lumen-hero1.png"
-previewImage: "/images/blog/clean/lumen-hero1.png"
+heroImage: "images/blog/hero/lumen-hero1.png"
+previewImage: "images/blog/clean/lumen-hero1.png"
+tags: ["Lumen", "Metabolism", "Biohacking", "Longevity", "Intermittent Fasting"]
+canonical: "https://misty-light-media.github.io/vitaledge-site/blog/lumen-review"
+readingTime: 3
 ---
 
 If you've ever wished you could know **exactly how your metabolism is functioning**, meet **Lumen** — a pocket-sized device that gives you real-time feedback on fat vs. carb burn using just your breath.
@@ -17,17 +20,17 @@ Lumen is a **metabolic tracking device** you breathe into each morning. It measu
 
 Most trackers only show calories or steps. Lumen goes deeper by helping you understand how your body shifts between **carb-burning** and **fat-burning** — a critical factor in **metabolic health** and **aging well**.
 
-- Great for those on **keto**, **intermittent fasting**, or **low-carb** diets
-- Helps optimize your pre- and post-workout meals
-- Encourages **flexible metabolism**, a longevity superpower
+- Great for those on **keto**, **intermittent fasting**, or **low-carb** diets  
+- Helps optimize your pre- and post-workout meals  
+- Encourages **flexible metabolism**, a longevity superpower  
 
 ## What the Data Tells You
 
 With one breath, you get a **Lumen score** (1 to 5):
 
-- **1–2**: Fat burn
-- **3**: Mixed
-- **4–5**: Carb burn
+- **1–2**: Fat burn  
+- **3**: Mixed  
+- **4–5**: Carb burn  
 
 You can also log meals, workouts, and sleep to build a feedback loop and get tailored meal plans.
 
@@ -35,15 +38,31 @@ You can also log meals, workouts, and sleep to build a feedback loop and get tai
 
 Lumen isn’t perfect — but it’s incredibly useful. You’ll get:
 
-- **Clear insights** on your metabolic state
-- **Daily guidance** for food and fasting
-- A sense of **control** over your energy, fat burn, and performance
+- **Clear insights** on your metabolic state  
+- **Daily guidance** for food and fasting  
+- A sense of **control** over your energy, fat burn, and performance  
+
+---
+
+## ❓ Frequently Asked Questions
+
+**What does Lumen actually measure?**  
+Lumen measures CO₂ concentration in your breath to determine whether you’re burning fat, carbs, or a mix of both.
+
+**Does Lumen work for intermittent fasting?**  
+Yes. Lumen pairs well with fasting by showing you when you’ve shifted into fat burn during fasts.
+
+**Can Lumen help with weight loss?**  
+It can support weight loss by providing insights that guide food choices and help you align meals with your metabolic state.
+
+**Is Lumen worth the cost?**  
+If you value metabolic insights and enjoy tracking, Lumen offers unique data you won’t get from typical fitness trackers.
+
+---
 
 ## Final Thoughts
 
 If you’re optimizing for **energy**, **fat loss**, or **longevity**, Lumen is a fun and powerful addition to your toolkit.
 
----
-
 💡 **Want to see how Lumen compares to other smart devices?**  
-👉 [Check out our Top Biohacking Picks](/top-products)
+👉 [Check out our Top Biohacking Picks](../top-products)

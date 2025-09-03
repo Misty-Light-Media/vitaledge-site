@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://misty-light-media.github.io/vitaledge-site/sitemap-index.xml

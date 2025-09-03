@@ -1,0 +1,8 @@
+---
+export interface Props { href: string; children: any; }
+const { href, children } = Astro.props;
+---
+<a href={href} rel="sponsored noopener noreferrer" target="_blank"
+   class="underline decoration-dotted hover:decoration-solid">
+  {children}
+</a>

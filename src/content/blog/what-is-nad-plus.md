@@ -1,10 +1,13 @@
 ---
 title: "What Is NAD+ and Why Everyone in Longevity Talks About It"
-author: "Andrew @ VitalEdge"
+author: "Alex @ VitalEdge"
 pubDate: 2025-07-12
 description: "Discover why NAD+ is at the center of every serious longevity conversation—and how to boost it effectively."
-heroImage: "/images/nad-supplement.webp"
-previewImage: "/images/blog/clean/nad-supplements.png"
+heroImage: "images/nad-supplement.webp"
+previewImage: "images/blog/clean/nad-supplements.png"
+tags: ["NAD+", "Longevity", "Supplements", "Biohacking", "Energy"]
+canonical: "https://misty-light-media.github.io/vitaledge-site/blog/what-is-nad-plus"
+readingTime: 3
 ---
 
 If you've spent any time in the world of health optimization, you've probably seen the term **NAD+** tossed around. But what is it, and why are scientists, biohackers, and doctors all talking about it?
@@ -36,12 +39,28 @@ High-purity NMN, third-party tested. Fast-acting and clean formula.
 ### 🫐 Elysium Basis
 Combines NR with pterostilbene (from blueberries) for antioxidant synergy.
 
+---
+
+## ❓ Frequently Asked Questions
+
+**What is NAD+ in simple terms?**  
+NAD+ is a molecule that helps your cells produce energy and repair themselves — it’s essential for life and declines as we age.
+
+**Do NAD+ supplements really work?**  
+Yes. Clinical studies show that NR and NMN supplements can raise NAD+ levels in humans and support energy metabolism.
+
+**Can you increase NAD+ without supplements?**  
+Yes — exercise, intermittent fasting, and good sleep all help maintain NAD+, though results are slower than with supplementation.
+
+**Are NAD+ boosters safe?**  
+Generally yes, when taken as directed. NR and NMN have been studied for safety, though long-term research is ongoing.
+
+---
+
 ## Final Thoughts
 
 If you're serious about feeling sharper, sleeping better, and aging smarter, NAD+ is worth your attention.
 
----
-
 💡 **Want to know which supplements are actually worth it?**  
 We did the research so you don’t have to.  
-👉 [Check out our top NAD+ boosters here](/top-products)
+👉 [Check out our top NAD+ boosters here](../top-products)
